@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shahriar · full‑stack & AI · physics soul</title>
+  <!-- Font & Icons (Font Awesome for crisp icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7fafc;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0a1929;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo a {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1e3a8a, #5b21b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: color 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* main sections */
+    section {
+      padding: 70px 0;
+    }
+
+    .hero {
+      padding: 40px 0 60px;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 350px;
+    }
+
+    .hero-content .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e3a8a;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(to right, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .hero-highlight {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #2563eb;
+      margin-bottom: 24px;
+      border-left: 6px solid #3b82f6;
+      padding-left: 24px;
+      background: #f0f9ff;
+      border-radius: 0 12px 12px 0;
+      line-height: 1.4;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #334155;
+      max-width: 550px;
+      margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 1.05rem;
+    }
+
+    .btn-primary {
+      background: #0f172a;
+      color: white;
+      box-shadow: 0 8px 16px -6px rgba(15,23,42,0.2);
+    }
+
+    .btn-primary:hover {
+      background: #1e293b;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 2px solid #0f172a;
+      color: #0f172a;
+    }
+
+    .btn-outline:hover {
+      background: #0f172a;
+      color: white;
+    }
+
+    .hero-avatar {
+      flex: 0 0 280px;
+      text-align: center;
+    }
+
+    .avatar-box {
+      background: linear-gradient(145deg, #ffffff, #f1f5f9);
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      padding: 20px;
+      box-shadow: 20px 20px 40px rgba(0,0,0,0.06);
+    }
+
+    .avatar-box i {
+      font-size: 10rem;
+      color: #1e3a8a;
+      opacity: 0.9;
+    }
+
+    .avatar-box p {
+      font-weight: 500;
+      color: #475569;
+    }
+
+    /* mantra / theme banner */
+    .mantra {
+      background: #0b1120;
+      color: white;
+      text-align: center;
+      padding: 48px 20px;
+      border-radius: 60px 60px 20px 20px;
+      margin: 20px 0 30px;
+    }
+
+    .mantra h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .mantra h2 i {
+      color: #fbbf24;
+      margin: 0 15px;
+    }
+
+    .mantra .sub-mantra {
+      font-size: 1.3rem;
+      color: #a5b4fc;
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* domain cards (enthusiasms) */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #a78bfa);
+      border-radius: 4px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .enth-card {
+      background: white;
+      padding: 32px 20px 28px;
+      border-radius: 32px;
+      box-shadow: 0 20px 30px -10px rgba(0,20,40,0.1);
+      transition: all 0.25s;
+      border: 1px solid #eef2f6;
+      text-align: center;
+    }
+
+    .enth-card:hover {
+      transform: scale(1.02);
+      border-color: #2563eb;
+      box-shadow: 0 30px 40px -12px rgba(37,99,235,0.2);
+    }
+
+    .enth-card i {
+      font-size: 3.5rem;
+      background: #e6f0ff;
+      padding: 18px;
+      border-radius: 60px;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    .enth-card h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .enth-card p {
+      color: #475569;
+    }
+
+    /* physics badge special */
+    .physics-bg {
+      background: linear-gradient(145deg, #f5f3ff, #e9e3ff);
+    }
+
+    /* problem solver highlight */
+    .problem-solver {
+      background: #ffffff;
+      border-radius: 48px;
+      padding: 48px 36px;
+      margin: 40px 0;
+      box-shadow: inset 0 -2px 0 #e2e8f0, 0 20px 30px -20px #1e293b;
+    }
+
+    .solver-flex {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .solver-flex .text {
+      flex: 2;
+    }
+
+    .solver-flex .icon {
+      flex: 1;
+      font-size: 5rem;
+      color: #f59e0b;
+      text-align: center;
+    }
+
+    .solver-flex h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .solver-flex h3 span {
+      color: #2563eb;
+      border-bottom: 3px solid #fbbf24;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 30px 0 0;
+    }
+    .tag {
+      background: #f1f5f9;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #0f172a;
+      font-size: 1rem;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* project / work mini */
+    .project-showcase {
+      background: #f1f4f9;
+      border-radius: 50px;
+      padding: 50px 36px;
+    }
+
+    .project-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .project-icon {
+      background: #dbeafe;
+      width: 70px;
+      height: 70px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: #075985;
+    }
+
+    .project-desc h4 {
+      font-size: 1.6rem;
+    }
+
+    .project-desc p {
+      max-width: 600px;
+    }
+
+    .foot {
+      background: #0b1120;
+      color: #cbd5e1;
+      padding: 40px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+    }
+
+    .foot .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      color: white;
+      margin-left: 25px;
+      font-size: 1.6rem;
+      transition: color 0.2s;
+    }
+    .social a:hover {
+      color: #3b82f6;
+    }
+
+    hr {
+      border: 1px solid #1e293b;
+      margin: 30px 0;
+    }
+
+    /* responsive touches */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .mantra h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- navigation (clean) -->
+    <nav class="navbar">
+      <div class="logo"><a href="#">S. Rahman</a></div>
+      <ul class="nav-links">
+        <li><a href="#">home</a></li>
+        <li><a href="#domains">passions</a></li>
+        <li><a href="#work">work</a></li>
+        <li><a href="#contact">connect</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Hero + main theme (LOVE TO SOLVE BUSINESS PROBLEMS ..) -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="badge"><i class="fas fa-bolt" style="margin-right: 6px;"></i> physics grad · full‑stack · AI</span>
+          <h1>I love to solve business problems with my tech skills.</h1>
+          <div class="hero-highlight">
+            <i class="fas fa-quote-left" style="opacity:0.6;"></i> full‑stack enthusiast · data science · AI/ML · cyber security
+          </div>
+          <p class="hero-desc">
+            Blending a physicist’s curiosity with modern engineering — from robust web apps to intelligent systems. 
+            I turn complex puzzles into clean, scalable solutions.
+          </p>
+          <div class="cta-buttons">
+            <a href="#" class="btn btn-primary"><i class="fas fa-rocket"></i> solve together</a>
+            <a href="#" class="btn btn-outline"><i class="fas fa-file-code"></i> see my work</a>
+          </div>
+        </div>
+        <div class="hero-avatar">
+          <div class="avatar-box">
+            <i class="fas fa-user-astronaut"></i>
+            <p>⚛️ physicist mindset<br/>🔐 zero‑trust builder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- mantra banner – strong restatement -->
+  <div class="container">
+    <div class="mantra">
+      <h2><i class="fas fa-heart" style="color:#f87171;"></i> solve · build · secure · learn <i class="fas fa-brain"></i></h2>
+      <div class="sub-mantra">
+        <span>#fullstack</span> <span>#datascience</span> <span>#AI/ML</span> <span>#cybersecurity</span> <span>#physics</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- domain cards (all enthusiasms) -->
+  <section id="domains">
+    <div class="container">
+      <h2 class="section-title">arenas I breathe</h2>
+      <div class="cards-grid">
+        <div class="enth-card">
+          <i class="fas fa-code"></i>
+          <h3>full‑stack</h3>
+          <p>React, Node, Python, Go — I craft end‑to‑end apps with clean UX & solid APIs.</p>
+        </div>
+        <div class="enth-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>data science</h3>
+          <p>pandas, numpy, visualization — extracting signals from noise.</p>
+        </div>
+        <div class="enth-card physics-bg">
+          <i class="fas fa-atom"></i>
+          <h3>physics background</h3>
+          <p>analytical reasoning, mathematical modelling, and first‑principles thinking.</p>
+        </div>
+        <div class="enth-card">
+          <i class="fas fa-robot"></i>
+          <h3>AI / ML</h3>
+          <p>scikit‑learn, TF, transformers — from regression to LLM prototypes.</p>
+        </div>
+        <div class="enth-card">
+          <i class="fas fa-shield-halved"></i>
+          <h3>cyber security</h3>
+          <p>threat modelling, secure coding, zero‑trust mindset, CTF occasional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- deeper problem solver block -->
+  <div class="container">
+    <div class="problem-solver">
+      <div class="solver-flex">
+        <div class="icon">
+          <i class="fas fa-puzzle-piece"></i>
+        </div>
+        <div class="text">
+          <h3><span>business problems</span> are my playground</h3>
+          <p style="font-size:1.2rem; margin: 15px 0 10px;">Whether it's automating a reporting pipeline, building a realtime dashboard, or securing a customer-facing portal — I combine <strong>physics intuition + full‑stack muscle + ML</strong> to deliver value.</p>
+          <div class="tag-list">
+            <span class="tag">🏦 fintech</span>
+            <span class="tag">📈 analytics</span>
+            <span class="tag">🔐 auth & compliance</span>
+            <span class="tag">🤖 decision engines</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- mini work / projects (flavor) -->
+  <section id="work">
+    <div class="container">
+      <h2 class="section-title">recent collisions (tech x business)</h2>
+      <div class="project-showcase">
+        <div class="project-item">
+          <div class="project-icon"><i class="fas fa-credit-card"></i></div>
+          <div class="project-desc">
+            <h4>fraud detection engine · <span style="font-size:1rem; font-weight:400;">cyber + ML</span></h4>
+            <p>built a realtime scoring system for transaction anomalies – reduced false positives by 32%.</p>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-icon"><i class="fas fa-flask"></i></div>
+          <div class="project-desc">
+            <h4>physics‑inspired inventory optimizer · <span style="font-size:1rem; font-weight:400;">data science</span></h4>
+            <p>used simulated annealing (physics concept) to optimize retail stock levels.</p>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-icon"><i class="fas fa-lock"></i></div>
+          <div class="project-desc">
+            <h4>secure full‑stack dashboard · <span style="font-size:1rem; font-weight:400;">next.js + RBAC</span></h4>
+            <p>role‑based access, audit logs, and API gateway for a healthcare startup.</p>
+          </div>
+        </div>
+        <div style="text-align: right; margin-top: 20px;">
+          <a href="#" style="font-weight:600;">more case studies <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer / contact -->
+  <footer class="foot" id="contact">
+    <div class="container">
+      <div>
+        <h3 style="color:white; font-size:2rem; margin-bottom: 6px;">ready to solve?</h3>
+        <p><i class="fas fa-envelope"></i> shahriar@physolve.dev  ·  <i class="fas fa-phone-alt"></i> +1 (234) 567-890</p>
+      </div>
+      <div class="social">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-kaggle"></i></a>
+      </div>
+    </div>
+    <hr style="max-width:1200px; margin:20px auto;">
+    <div class="container" style="justify-content: center; font-size:0.95rem;">
+      <span>© 2026 shahriar — physics soul, full‑stack heart, security instinct.</span>
+    </div>
+  </footer>
+
+  <!-- dummy / no external JS needed -->
+</body>
+</html>
